@@ -86,6 +86,7 @@
     <Compile Include="Core\TestBase.cs" />
     <Compile Include="Core\VaftTestContext.cs" />
     <Compile Include="Core\WebOperationBase.cs" />
+    <Compile Include="Core\XUnitTestBase.cs" />
     <Compile Include="DriverFactory\AppiumDriverFactory.cs" />
     <Compile Include="DriverFactory\BrowserStackDriverFactory.cs" />
     <Compile Include="DriverFactory\LocalDriverFactory.cs" />
