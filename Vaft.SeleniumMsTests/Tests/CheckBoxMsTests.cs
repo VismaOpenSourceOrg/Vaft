@@ -1,23 +1,23 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vaft.Framework.Core;
 using Vaft.Framework.Element;
 using Vaft.PageObjects.Pages;
 
-namespace Vaft.SeleniumNunitTests.Tests
+namespace Vaft.SeleniumMsTests.Tests
 {
-    [TestFixture]
-    public class CheckBoxNunitTests : TestBase
+    [TestClass]
+    public class CheckBoxMsTests : MsTestBase
     {
         private CheckboxesPage _checkboxesPage;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             _checkboxesPage = new CheckboxesPage(Driver);
             _checkboxesPage.NavigateToCheckboxesPage();
         }
 
-        [Test]
+        [TestMethod]
         public void OperateWithCheckbox()
         {
             // Assert checkbox state
@@ -29,7 +29,7 @@ namespace Vaft.SeleniumNunitTests.Tests
             _checkboxesPage.Checkbox2.Checkbox().AssertIsTicked();
 
             // Do nothing
-            _checkboxesPage.Checkbox1.Checkbox().Untick();;
+            _checkboxesPage.Checkbox1.Checkbox().Untick();
             _checkboxesPage.Checkbox2.Checkbox().Tick();
             _checkboxesPage.Checkbox1.Checkbox().AssertIsNotTicked();
             _checkboxesPage.Checkbox2.Checkbox().AssertIsTicked();

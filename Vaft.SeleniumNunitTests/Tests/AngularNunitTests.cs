@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using Vaft.Framework.Core;
 using Vaft.Framework.Driver;
 using Vaft.Framework.Element;
-using Vaft.SeleniumNunitTests.Pages;
+using Vaft.PageObjects.Pages;
 
 namespace Vaft.SeleniumNunitTests.Tests
 {

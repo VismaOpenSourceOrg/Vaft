@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using Vaft.Framework.Core;
 using Vaft.Framework.Driver;
 
-namespace Vaft.SeleniumNunitTests.Pages
+namespace Vaft.PageObjects.Pages
 {
     public class CheckboxesPage : PageBase
     {

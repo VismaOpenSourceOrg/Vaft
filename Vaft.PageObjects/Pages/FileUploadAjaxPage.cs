@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Support.PageObjects;
 using Vaft.Framework.Core;
 
-namespace Vaft.SeleniumNunitTests.Pages
+namespace Vaft.PageObjects.Pages
 {
     public class FileUploadAjaxPage : PageBase
     {
