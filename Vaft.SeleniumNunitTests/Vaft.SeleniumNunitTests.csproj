@@ -89,6 +89,7 @@
     <Compile Include="Tests\CheckBoxNunitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\FileUploadNunitTests.cs" />
+    <Compile Include="Tests\RightClickNunitTests.cs" />
     <Compile Include="Tests\ScreenshotNunitTests.cs" />
   </ItemGroup>
   <ItemGroup>
