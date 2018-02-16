@@ -28,7 +28,7 @@ namespace Vaft.Framework.Element
             }
         }
 
-        /// <summary>Selects dropdown value by index</summary>
+        /// <summary>Selects dropdown value by index. Index value starts from 0.</summary>
         /// <param name="index">Index of dropdown value</param>
         public void SelectByIndex(int index)
         {
