@@ -91,7 +91,6 @@
   <ItemGroup>
     <Compile Include="Pages\Page.cs" />
     <Compile Include="Tests\Test.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
