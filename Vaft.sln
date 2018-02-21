@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{3B563173-89BA-4077-9938-C934B6D79467}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vaft.SeleniumMsTests", "Vaft.SeleniumMsTests\Vaft.SeleniumMsTests.csproj", "{A0E424FD-4558-45A2-9F52-33A702E33D12}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vaft.PageObjects", "Vaft.PageObjects\Vaft.PageObjects.csproj", "{1FEC6835-66EE-4826-911A-2380B5388307}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vaft.SeleniumXunitTests", "Vaft.SeleniumXunitTests\Vaft.SeleniumXunitTests.csproj", "{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,6 +100,20 @@ Global
 		{1FEC6835-66EE-4826-911A-2380B5388307}.IE11|Any CPU.Build.0 = Release|Any CPU
 		{1FEC6835-66EE-4826-911A-2380B5388307}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FEC6835-66EE-4826-911A-2380B5388307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.Chrome|Any CPU.ActiveCfg = Release|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.Chrome|Any CPU.Build.0 = Release|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.Firefox|Any CPU.ActiveCfg = Release|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.Firefox|Any CPU.Build.0 = Release|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.IE|Any CPU.ActiveCfg = Release|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.IE|Any CPU.Build.0 = Release|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.IE10|Any CPU.ActiveCfg = Release|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.IE10|Any CPU.Build.0 = Release|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.IE11|Any CPU.ActiveCfg = Release|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.IE11|Any CPU.Build.0 = Release|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +124,7 @@ Global
 		{FB9592C9-BF37-43EF-ACE5-04EEF7C7DE0D} = {DE3A5EC3-D89F-4946-A807-12A874DE4062}
 		{A0E424FD-4558-45A2-9F52-33A702E33D12} = {DE3A5EC3-D89F-4946-A807-12A874DE4062}
 		{1FEC6835-66EE-4826-911A-2380B5388307} = {DE3A5EC3-D89F-4946-A807-12A874DE4062}
+		{54E3A85F-CC37-40FF-B4DD-DD4A0EAD6276} = {DE3A5EC3-D89F-4946-A807-12A874DE4062}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF634829-5BFD-45DC-A258-3D834D6C72AF}
