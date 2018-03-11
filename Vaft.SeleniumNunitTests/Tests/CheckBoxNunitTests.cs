@@ -6,6 +6,7 @@ using Vaft.PageObjects.Pages;
 namespace Vaft.SeleniumNunitTests.Tests
 {
     [TestFixture]
+    [Category("Smoke")]
     public class CheckBoxNunitTests : TestBase
     {
         private CheckboxesPage _checkboxesPage;
