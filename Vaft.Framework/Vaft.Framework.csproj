@@ -60,9 +60,6 @@
     <OutputPath>bin\IE11\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="appium-dotnet-driver, Version=1.2.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Appium.WebDriver.1.2.0.4\lib\net40\appium-dotnet-driver.dll</HintPath>
-    </Reference>
     <Reference Include="BrowserStackLocal, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\BrowserStackLocal.0.2.0.0\lib\net45\BrowserStackLocal.dll</HintPath>
     </Reference>

@@ -1,7 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Remote;
+//using OpenQA.Selenium.Appium;
+//using OpenQA.Selenium.Remote;
 using Vaft.Framework.Settings;
 
 namespace Vaft.Framework.DriverFactory
@@ -14,7 +14,7 @@ namespace Vaft.Framework.DriverFactory
             switch (platformName)
             {
                 case "Android":
-                    return CreateAndroidDriver();
+                    throw new NotImplementedException("Android driver is not implemented in VAFT");
                 case "iOS":
                     throw new NotImplementedException("iOS driver is not implemented in VAFT");
                 default:
@@ -22,23 +22,23 @@ namespace Vaft.Framework.DriverFactory
             }
         }
 
-        private static IWebDriver CreateAndroidDriver()
-        {
-            var capabilities = new DesiredCapabilities();
+        //private static IWebDriver CreateAndroidDriver()
+        //{
+        //    var capabilities = new DesiredCapabilities();
 
-            capabilities.SetCapability("platformName", Config.Settings.AppiumSettings.PlatformName);
-            capabilities.SetCapability("platformVersion", Config.Settings.AppiumSettings.PlatformVersion);
+        //    capabilities.SetCapability("platformName", Config.Settings.AppiumSettings.PlatformName);
+        //    capabilities.SetCapability("platformVersion", Config.Settings.AppiumSettings.PlatformVersion);
 
-            if (Config.Settings.AppiumSettings.DeviceName == null)
-            {
-                throw new ArgumentNullException("deviceName", "Parameter cannot be null");
-            }
+        //    if (Config.Settings.AppiumSettings.DeviceName == null)
+        //    {
+        //        throw new ArgumentNullException("deviceName", "Parameter cannot be null");
+        //    }
 
-            capabilities.SetCapability("deviceName", Config.Settings.AppiumSettings.DeviceName);
-            capabilities.SetCapability("browserName", Config.Settings.AppiumSettings.BrowserName);
+        //    capabilities.SetCapability("deviceName", Config.Settings.AppiumSettings.DeviceName);
+        //    capabilities.SetCapability("browserName", Config.Settings.AppiumSettings.BrowserName);
 
-            IWebDriver driver = new AppiumDriver(new Uri(Config.Settings.AppiumSettings.AppiumHubUrl), capabilities);
-            return driver;
-        }
+        //    IWebDriver driver = new AppiumDriver(new Uri(Config.Settings.AppiumSettings.AppiumHubUrl), capabilities);
+        //    return driver;
+        //}
     }
 }
