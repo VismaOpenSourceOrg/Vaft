@@ -11,11 +11,11 @@
       <dependency id="Magick.NET-Q8-AnyCPU" version="[6.8.9.501,)" />
       <dependency id="Newtonsoft.Json" version="[8.0.3,)" />
       <dependency id="NUnit" version="[3.6.0,)" />
-      <dependency id="Selenium.Support" version="[3.7.0,)" />
-      <dependency id="Selenium.WebDriver" version="[3.7.0,)" />
-	  <dependency id="Selenium.WebDriver.ChromeDriver" version="[2.33.0,)" />
-	  <dependency id="Selenium.WebDriver.IEDriver" version="[3.6.0,)" />
-	  <dependency id="Selenium.WebDriver.GeckoDriver.Win64" version="[0.19.0,)" />
+      <dependency id="Selenium.Support" version="[3.11.0,)" />
+      <dependency id="Selenium.WebDriver" version="[3.11.0,)" />
+	  <dependency id="Selenium.WebDriver.ChromeDriver" version="[2.37.0,)" />
+	  <dependency id="Selenium.WebDriver.IEDriver" version="[3.11.1,)" />
+	  <dependency id="Selenium.Firefox.WebDriver" version="[0.20.0,)" />
 	  <dependency id="NLog" version="[4.4.12,)" />
       <dependency id="log4net" version="[2.0.5,)" />
 	  <dependency id="SharpZipLib" version="[0.86.0,)" />
