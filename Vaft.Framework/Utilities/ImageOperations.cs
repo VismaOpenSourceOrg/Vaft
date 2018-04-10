@@ -32,7 +32,7 @@ namespace Vaft.Framework.Utilities
 
             using (var delta = new MagickImage())
             {
-                double compareResult = actualImg.Compare(baselineImg, Metric.PeakAbsoluteError, delta);
+                double compareResult = actualImg.Compare(baselineImg, ErrorMetric.PeakAbsolute, delta);
 
                 if (compareResult < tolerance)
                 {

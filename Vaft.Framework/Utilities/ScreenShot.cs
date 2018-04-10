@@ -107,7 +107,7 @@ namespace Vaft.Framework.Utilities
         /// <param name="baselineImageName">Baseline screenshot name</param>
         /// <param name="element">Web element</param>
         /// <param name="tolerance"></param>
-        public static void CompareElementImage(IWebDriver driver, string baselineImageDir, string baselineImageName, IWebElement element, double tolerance = 0.9)
+        public static void CompareElementImage(IWebDriver driver, string baselineImageDir, string baselineImageName, IWebElement element, double tolerance = 0.1)
         {
             var timeStamp = TimeStamp();
             var copiedBaselineImageFileName = timeStamp + "-" + baselineImageName + "-Expected";

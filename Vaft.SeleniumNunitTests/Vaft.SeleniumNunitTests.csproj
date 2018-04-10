@@ -91,6 +91,7 @@
     <Compile Include="Tests\DropdownNunitTests.cs" />
     <Compile Include="Tests\FileUploadNunitTests.cs" />
     <Compile Include="Tests\RightClickNunitTests.cs" />
+    <Compile Include="Tests\ScreenshotComparisonNunitTests.cs" />
     <Compile Include="Tests\ScreenshotNunitTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +124,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\BaselineScreenshots\avatar-blank.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\BaselineScreenshots\images-page-scr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

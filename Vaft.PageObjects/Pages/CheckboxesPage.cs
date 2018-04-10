@@ -7,6 +7,9 @@ namespace Vaft.PageObjects.Pages
 {
     public class CheckboxesPage : PageBase
     {
+        [FindsBy(How = How.Id, Using = "checkboxes")]
+        public IWebElement Checkboxes { get; set; }
+
         [FindsBy(How = How.XPath, Using = "//form[@id='checkboxes']/input[1]")]
         public IWebElement Checkbox1 { get; set; }
 
