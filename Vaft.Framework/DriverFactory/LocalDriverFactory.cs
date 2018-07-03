@@ -70,6 +70,8 @@ namespace Vaft.Framework.DriverFactory
             var ffp = new FirefoxProfile();
             ffp.SetPreference("intl.accept_languages", Config.Settings.RuntimeSettings.BrowserLanguage);
 
+            ffp.SetPreference("dom.webcomponents.enabled",true);
+            ffp.SetPreference("dom.webcomponents.shadowdom.enabled",true);
             var proxy = GetProxy();
             if (proxy != null)
             {

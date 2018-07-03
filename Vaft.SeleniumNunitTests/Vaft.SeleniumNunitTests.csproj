@@ -93,6 +93,7 @@
     <Compile Include="Tests\RightClickNunitTests.cs" />
     <Compile Include="Tests\ScreenshotComparisonNunitTests.cs" />
     <Compile Include="Tests\ScreenshotNunitTests.cs" />
+    <Compile Include="Tests\ShadowDomWebElementTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Chrome.config">
@@ -129,6 +130,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\BaselineScreenshots\images-page-scr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\WebComponentsDemoPage.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Web components demo page </title>
+</head>
+<style>
+   	body {
+  overflow-y: scroll;
+}
+  </style>
+<body>
+<h1>
+ Demo page for web components UI automation with Selenium
+</h1>
+
+<div id="container">
+  <input placeholder="light DOM" id="light_dom" />
+  <div class="anotherdiv"> 
+   <div class="innerDiv">
+    some text here
+   </div>
+  </div>
+</div>
+
+<template id="t">
+  <h2>Shadow #1</h2>
+  <style>
+   h2 {
+      font: 10px;
+      margin: 2;
+    }
+    :host {
+      background: rgba(7, 70, 126, 0.5);
+      padding: 12px;
+    }
+	body {
+  overflow-y: scroll;
+}
+  </style>
+  <label > One 
+  <input id="one"/>
+  </label>
+  </p>
+   <label > Two 
+  <input id="two"  value="987777" />
+  </label>
+  </p>
+  <div id="internal"></div>
+  </p>
+  <div id="internal2"></div>
+
+</template>
+
+
+<template id="t2">
+  <h2>Shadow #2</h2>
+  <style>
+    h2 {
+      font: 10px;
+      margin: 2px;
+    }
+	.data-view-label
+	{ 
+	display:block;
+	border-style: dotted;
+	font-size: 20px;
+	}
+	.data-view-text
+	{ 
+	 font-size:15px;
+	}
+    :host {
+      background: rgba(167, 104, 15, 0.5);
+      padding: 12px;
+    }
+  </style>
+ <label > Sub2-one 
+  <input id="sub2-one"/>
+  </label>
+  </p>
+   <label > Sub2-two 
+  <input id="sub2-two" value="5"/>
+  </label>
+</p>
+  <div class="data-view-label"> Dummy text:
+  <div class="data-view-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+  </div>
+  </p>
+  <div id="internal1"></div>
+
+</template>
+
+<template id="t3">
+  <h2>Shadow #3 </h2>
+  <style>
+    h2 {
+      font: 10px;
+      margin: 2px;
+    }
+	.data-view-label
+	{ 
+	display:block;
+	border-style: dotted;
+	font-size: 20px;
+	}
+	.data-view-text
+	{ 
+	 font-size:15px;
+	}
+    :host {
+      background: rgba(0, 255, 0, 0.5);
+      padding: 12px;
+    }
+  </style>
+  <label > Sub3-one 
+  <input id="sub3-one"/>
+  </label>
+  </p>
+   <label > Sub3-two 
+  <input id="sub3-two" value="2133546" />
+  </label>
+  </p>
+  <div class="data-view-label"> Dummy text:
+  <div class="data-view-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+  </div>
+  </p>
+  <div id="internal1"></div>
+
+</template>
+
+<script>
+/*if (!(document.head.createShadowRoot || document.head.attachShadow)) {
+  container.textContent = 'Your browser does not support Shadow DOM :(';
+  throw new Error();
+}
+*/
+var root = container.attachShadow({ mode: 'open' });
+root.appendChild(t.content.cloneNode(true));
+
+var root2 = root.getElementById('internal').attachShadow({ mode: 'open' });
+root2.appendChild(t2.content.cloneNode(true));
+
+
+var t2_1=t2.content.cloneNode(true);
+var h2=t2_1.querySelector("h2");
+h2.innerText="Shadow #2 - 2nd";
+
+
+var dummytext=t2_1.querySelector("div.data-view-text");
+dummytext.innerText="Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
+
+var root2nd = root.getElementById('internal2').attachShadow({ mode: 'open' });
+root2nd.appendChild(t2_1);
+
+
+var root3 = root2.getElementById('internal1').attachShadow({ mode: 'open' });
+root3.appendChild(t3.content.cloneNode(true));
+
+</script>
+
+
+</body>
+
+</html>

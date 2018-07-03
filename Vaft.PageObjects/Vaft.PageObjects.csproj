@@ -88,6 +88,7 @@
     <Compile Include="Pages\FileUploadAjaxPage.cs" />
     <Compile Include="Pages\FileUploadFileChuckerPage.cs" />
     <Compile Include="Pages\FileUploadNetPage.cs" />
+    <Compile Include="Pages\WebComponentsDemoPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

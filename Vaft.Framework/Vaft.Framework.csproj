@@ -123,6 +123,7 @@
     <Compile Include="Driver\WebDriverExt.cs" />
     <Compile Include="Element\AdvancedUtils.cs" />
     <Compile Include="Element\CheckboxUtils.cs" />
+    <Compile Include="Element\Customization\WebComponents\WebComponentsElement.cs" />
     <Compile Include="Element\DropdownUtils.cs" />
     <Compile Include="Element\ElementAssertUtils.cs" />
     <Compile Include="Element\ElementCheckUtils.cs" />
@@ -157,7 +158,11 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Element\Customization\WebComponents\WebComponentsElementHelper.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
