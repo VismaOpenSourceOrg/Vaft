@@ -40,22 +40,23 @@ namespace Vaft.Framework.DriverFactory
 
         private IWebDriver CreateChromeDriver()
         {
-            var chromeServerConfig = Config.Settings.RuntimeSettings.ChromeServerPath;
-            var chromeDriverServerPath = AppDomain.CurrentDomain.BaseDirectory + chromeServerConfig;
-            var options = new ChromeOptions();
-            options.AddArguments("--start-maximized");
-            options.AddArguments("--lang=" + Config.Settings.RuntimeSettings.BrowserLanguage);
-            options.AddArguments("--test-type");
-            options.AddArguments("--disable-popup-blocking");
+            string chromeServerConfig = Config.Settings.RuntimeSettings.ChromeServerPath;
+            string chromeDriverServerPath = AppDomain.CurrentDomain.BaseDirectory + chromeServerConfig;
 
-            var proxy = GetProxy();
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("--start-maximized");
+            chromeOptions.AddArguments("--lang=" + Config.Settings.RuntimeSettings.BrowserLanguage);
+            chromeOptions.AddArguments("--test-type");
+            chromeOptions.AddArguments("--disable-popup-blocking");
+
+            Proxy proxy = GetProxy();
             if (proxy != null)
             {
-                options.Proxy = proxy;
+                chromeOptions.Proxy = proxy;
             }
 
-            InitProfile(options);
-            Driver = new ChromeDriver(chromeDriverServerPath, options);
+            InitProfile(chromeOptions);
+            Driver = new ChromeDriver(chromeDriverServerPath, chromeOptions);
             SetBrowserSize(Driver);
             Driver.VaftExt().TurnOnImplicitlyWait();
             Driver.VaftExt().SetPageLoadTimeout();
@@ -64,21 +65,22 @@ namespace Vaft.Framework.DriverFactory
 
         private IWebDriver CreateFirefoxDriver()
         {
-            FirefoxOptions ffOpts = new FirefoxOptions();
-            ffOpts.SetPreference("intl.accept_languages", Config.Settings.RuntimeSettings.BrowserLanguage);
+            string firefoxDriverConfig = Config.Settings.RuntimeSettings.FirefoxDriverPath;
+            string firefoxDriverPath = AppDomain.CurrentDomain.BaseDirectory + firefoxDriverConfig;
 
-            var ffp = new FirefoxProfile();
-            ffp.SetPreference("intl.accept_languages", Config.Settings.RuntimeSettings.BrowserLanguage);
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+            firefoxOptions.SetPreference("intl.accept_languages", Config.Settings.RuntimeSettings.BrowserLanguage);
 
-            var proxy = GetProxy();
+            Proxy proxy = GetProxy();
             if (proxy != null)
             {
-                ffp.SetProxyPreferences(proxy);
+                firefoxOptions.Proxy = proxy;
             }
 
-            InitProfile(ffp);
-
-            Driver = new FirefoxDriver(ffOpts);
+            //var ffp = new FirefoxProfile();
+            //InitProfile(ffp);
+            InitProfile(firefoxOptions);
+            Driver = new FirefoxDriver(firefoxDriverPath, firefoxOptions);
             SetBrowserSize(Driver);
             Driver.VaftExt().TurnOnImplicitlyWait();
             Driver.VaftExt().SetPageLoadTimeout();
@@ -96,7 +98,7 @@ namespace Vaft.Framework.DriverFactory
                 IgnoreZoomLevel = true
             };
 
-            var proxy = GetProxy();
+            Proxy proxy = GetProxy();
             if (proxy != null)
             {
                 options.Proxy = proxy;
@@ -134,7 +136,6 @@ namespace Vaft.Framework.DriverFactory
             var options = new EdgeOptions();
             options.PageLoadStrategy = (PageLoadStrategy)EdgePageLoadStrategy.Eager;
 
-            InitProfile(options);
             Driver = new EdgeDriver(edgeDriverServerPath, options);
             SetBrowserSize(Driver);
             Driver.VaftExt().TurnOnImplicitlyWait();
@@ -150,7 +151,7 @@ namespace Vaft.Framework.DriverFactory
                 return null;
             }
 
-            var proxy = new Proxy
+            Proxy proxy = new Proxy
             {
                 IsAutoDetect = false,
                 Kind = ProxyKind.Manual,
