@@ -64,8 +64,8 @@ namespace Vaft.Framework.DriverFactory
 
         private IWebDriver CreateFirefoxDriver()
         {
-            var firefoxDriverConfig = Config.Settings.RuntimeSettings.FirefoxDriverPath;
-            var firefoxDriverPath = AppDomain.CurrentDomain.BaseDirectory + firefoxDriverConfig;
+            FirefoxOptions ffOpts = new FirefoxOptions();
+            ffOpts.SetPreference("intl.accept_languages", Config.Settings.RuntimeSettings.BrowserLanguage);
 
             var ffp = new FirefoxProfile();
             ffp.SetPreference("intl.accept_languages", Config.Settings.RuntimeSettings.BrowserLanguage);
@@ -78,7 +78,7 @@ namespace Vaft.Framework.DriverFactory
 
             InitProfile(ffp);
 
-            Driver = new FirefoxDriver(ffp);
+            Driver = new FirefoxDriver(ffOpts);
             SetBrowserSize(Driver);
             Driver.VaftExt().TurnOnImplicitlyWait();
             Driver.VaftExt().SetPageLoadTimeout();

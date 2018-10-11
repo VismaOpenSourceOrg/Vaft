@@ -3,7 +3,11 @@ using System.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Opera;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Safari;
 using Vaft.Framework.Core;
 using Vaft.Framework.Driver;
 using Vaft.Framework.Settings;
@@ -44,11 +48,13 @@ namespace Vaft.Framework.DriverFactory
                     SetCapabilities(capabilities, "Chrome");
                     return CreateRemoteWebDriver(capabilities);
                 case "Firefox":
-                    capabilities = DesiredCapabilities.Firefox();
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    capabilities = firefoxOptions.ToCapabilities() as DesiredCapabilities;
                     SetCapabilities(capabilities, "Firefox");
                     return CreateRemoteWebDriver(capabilities);
                 case "IE":
-                    capabilities = DesiredCapabilities.InternetExplorer();
+                    InternetExplorerOptions ieOptions = new InternetExplorerOptions();                    
+                    capabilities = ieOptions.ToCapabilities() as DesiredCapabilities;
                     capabilities.SetCapability("browserstack.ie.enablePopups", "true");
                     SetCapabilities(capabilities, "IE");
                     return CreateRemoteWebDriver(capabilities);
@@ -59,12 +65,14 @@ namespace Vaft.Framework.DriverFactory
                     SetCapabilities(capabilities, "Edge");
                     return CreateRemoteWebDriver(capabilities);
                 case "Safari":
-                    capabilities = DesiredCapabilities.Safari();
+                    SafariOptions safariOptions = new SafariOptions();
+                    capabilities = safariOptions.ToCapabilities() as DesiredCapabilities;
                     capabilities.SetCapability("browserstack.safari.enablePopups", "true");
                     SetCapabilities(capabilities, "Safari");
                     return CreateRemoteWebDriver(capabilities);
                 case "Opera":
-                    capabilities = DesiredCapabilities.Opera();
+                    OperaOptions operaOptions = new OperaOptions();
+                    capabilities = operaOptions.ToCapabilities() as DesiredCapabilities;
                     SetCapabilities(capabilities, "Opera");
                     return CreateRemoteWebDriver(capabilities);
                 default:
@@ -74,22 +82,19 @@ namespace Vaft.Framework.DriverFactory
 
         private static IWebDriver CreateMobileWebDriver()
         {
-            DesiredCapabilities capabilities;
+            DesiredCapabilities capabilities = new DesiredCapabilities();
 
             var browser = Config.Settings.BrowserStackSettings.BsBrowserName;
 
             switch (browser)
             {
                 case "android":
-                    capabilities = DesiredCapabilities.Android();
                     SetCapabilities(capabilities, "android");
                     return CreateMobileRemoteWebDriver(capabilities);
                 case "iPad":
-                    capabilities = DesiredCapabilities.IPad();
                     SetCapabilities(capabilities, "iPad");
                     return CreateMobileRemoteWebDriver(capabilities);
                 case "iPhone":
-                    capabilities = DesiredCapabilities.IPhone();
                     SetCapabilities(capabilities, "iPhone");
                     return CreateMobileRemoteWebDriver(capabilities);
                 default:

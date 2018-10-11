@@ -7,7 +7,7 @@ using Vaft.Framework.Settings;
 namespace Vaft.UnitTests.Tests
 {
     /// <summary>
-    /// The <see cref="WebDriverFactoryTests"/> class implements unit tests for the WebDriverFactory class
+    /// The <see cref="WebDriverFactoryTests"/> class implements unit tests for the LocalDriverFactory class
     /// </summary>
     [TestFixture]
     [Parallelizable(ParallelScope.None)]
