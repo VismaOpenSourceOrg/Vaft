@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using System;
 using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -14,13 +14,18 @@ namespace Vaft.SeleniumNunitTests.Tests
         private FileUploadFileChuckerPage _fileUploadPage;
         private FileUploadNetPage _fileUploadNetPage;
         private FileUploadAjaxPage _fileUploadAjaxPage;
+        private string _filePath;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _filePath = AppDomain.CurrentDomain.BaseDirectory + "/Resources/TestUpload.jpeg";
+        }
 
         [Test]
         public void UploadFile()
         {
-            string filePath = Path.GetFullPath(@"Resources/TestUpload.jpeg");
-            //            string filePath = AppDomain.CurrentDomain.BaseDirectory + "/Resources/TestUpload.jpeg";
-            VaftLog.Info("File Path: " + filePath);
+            VaftLog.Info("File Path: " + _filePath);
 
             _fileUploadPage = new FileUploadFileChuckerPage(Driver);
             _fileUploadPage.NavigateToFileUploadPage();
@@ -29,7 +34,7 @@ namespace Vaft.SeleniumNunitTests.Tests
                 .EnterEmail("selenium@gmail.com")
                 .EnterFirstName("Selenium");
 
-            _fileUploadPage.GetBrowseFileInputField().AdvancedAction().UploadFile(filePath);
+            _fileUploadPage.GetBrowseFileInputField().AdvancedAction().UploadFile(_filePath);
             _fileUploadPage.ClickBeginUploadBtn();
             Thread.Sleep(5000);
             _fileUploadPage.WaitUntilTextIsDisplayed("uploaded successfully.");
@@ -38,15 +43,11 @@ namespace Vaft.SeleniumNunitTests.Tests
         [Test]
         public void UploadFileInFileUploadNet()
         {
-            string filePath = Path.GetFullPath(@"Resources/TestUpload.jpeg");
-            VaftLog.Info("File Path: " + filePath);
+            VaftLog.Info("File Path: " + _filePath);
 
             _fileUploadNetPage = new FileUploadNetPage(Driver);
-            _fileUploadNetPage
-                .NavigateToFileUploadNetPage()
-                .ClickUploadWithoutJavaScript();
-            _fileUploadNetPage.GetBrowseFileInputField().AdvancedAction().UploadFile(filePath);
-            _fileUploadNetPage.ClickUploadBtn();
+            _fileUploadNetPage.NavigateToFileUploadNetPage();
+            _fileUploadNetPage.GetBrowseFileInputField().AdvancedAction().UploadFile(_filePath);
             _fileUploadNetPage.WaitUntilTextIsDisplayed("Your file has succesfully been stored!");
 
             string downloadLink = Driver.FindElement(By.CssSelector("input[name=\"default\"]")).GetAttribute("value");
@@ -57,13 +58,11 @@ namespace Vaft.SeleniumNunitTests.Tests
         [Test]
         public void UploadFileInAjaxUploader()
         {
-            string filePath = Path.GetFullPath(@"Resources/TestUpload.jpeg");
-            VaftLog.Info("File Path: " + filePath);
+            VaftLog.Info("File Path: " + _filePath);
 
             _fileUploadAjaxPage = new FileUploadAjaxPage(Driver);
-            _fileUploadAjaxPage
-                .NavigateToFileUploadAjaxPage();
-            _fileUploadAjaxPage.GetUploadFileElement().AdvancedAction().UploadFile(filePath);
+            _fileUploadAjaxPage.NavigateToFileUploadAjaxPage();
+            _fileUploadAjaxPage.GetUploadFileElement().AdvancedAction().UploadFile(_filePath);
             _fileUploadAjaxPage.WaitUntilTextIsDisplayed("TestUpload.jpeg");
         }
     }

@@ -9,7 +9,7 @@ namespace Vaft.PageObjects.Pages
         [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div[3]/div/div/div/p[2]/a")]
         protected IWebElement UploadWithoutJavaScriptLink { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div[3]/div/div/div/div/form/input")]
+        [FindsBy(How = How.XPath, Using = "//*[@id=\"jsupload\"]/div/form/input[1]")]
         protected IWebElement BrowseFileInputField { get; set; }
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div[3]/div/div/div/div/form/input[4]")]
