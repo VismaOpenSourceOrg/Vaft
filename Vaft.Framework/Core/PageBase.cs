@@ -1,6 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 using Vaft.Framework.Settings;
 
 namespace Vaft.Framework.Core
