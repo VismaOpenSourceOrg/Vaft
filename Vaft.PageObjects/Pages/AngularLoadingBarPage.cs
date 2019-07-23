@@ -1,27 +1,19 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using Vaft.Framework.Core;
 
 namespace Vaft.PageObjects.Pages
 {
     public class AngularLoadingBarPage : PageBase
     {
-        [FindsBy(How = How.Id, Using = "loading-bar-spinner")]
-        protected IWebElement Spinner { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/a[1]")]
-        protected IWebElement StartButton { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/a[3]")]
-        protected IWebElement RealExampleButton { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//div[@class='panel panel-default ng-scope'][1]")]
-        protected IWebElement Post1 { get; set; }
-
         public AngularLoadingBarPage(IWebDriver driver)
             : base(driver)
         {
         }
+
+        private IWebElement Spinner => Driver.FindElement(By.Id("loading-bar-spinner"));
+        private IWebElement StartButton => Driver.FindElement(By.XPath("/html/body/div[2]/div/a[1]"));
+        private IWebElement RealExampleButton => Driver.FindElement(By.XPath("/html/body/div[2]/div/a[3]"));
+        private IWebElement Post1 => Driver.FindElement(By.XPath("//div[@class='panel panel-default ng-scope'][1]"));
 
         public AngularLoadingBarPage NavigateToAngularPage()
         {
@@ -39,14 +31,9 @@ namespace Vaft.PageObjects.Pages
             StartButton.Click();
         }
 
-        public IWebElement GetRealExampleButton()
-        {
-            return RealExampleButton;
-        }
-
         public void ClickRealExampleButton()
         {
-            GetRealExampleButton().Click();
+            RealExampleButton.Click();
         }
 
         public IWebElement GetFirstPost()

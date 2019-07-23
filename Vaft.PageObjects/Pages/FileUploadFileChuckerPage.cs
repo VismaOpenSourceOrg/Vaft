@@ -1,28 +1,19 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using Vaft.Framework.Core;
 
 namespace Vaft.PageObjects.Pages
 {
     public class FileUploadFileChuckerPage : PageBase
     {
-        [FindsBy(How = How.Id, Using = "uploadname1")]
-        protected IWebElement BrowseFileInputField { get; set; }
-
-        [FindsBy(How = How.Id, Using = "uploadbutton")]
-        protected IWebElement BeginUploadBtn { get; set; }
-
-        [FindsBy(How = How.Id, Using = "formfield-email_address")]
-        protected IWebElement Email { get; set; }
-
-        [FindsBy(How = How.Id, Using = "formfield-first_name")]
-        protected IWebElement FirstName { get; set; }
-
-
         public FileUploadFileChuckerPage(IWebDriver driver)
             : base(driver)
         {
         }
+
+        private IWebElement BrowseFileInputField => Driver.FindElement(By.Id("uploadname1"));
+        private IWebElement BeginUploadBtn => Driver.FindElement(By.Id("uploadbutton"));
+        private IWebElement Email => Driver.FindElement(By.Id("formfield-email_address"));
+        private IWebElement FirstName => Driver.FindElement(By.Id("formfield-first_name"));
 
         public FileUploadFileChuckerPage NavigateToFileUploadPage()
         {

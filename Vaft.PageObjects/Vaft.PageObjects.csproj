@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\AngularLoadingBarPage.cs" />
+    <Compile Include="Pages\AddRemoveElementsPage.cs" />
     <Compile Include="Pages\CheckboxesPage.cs" />
     <Compile Include="Pages\DropdownPage.cs" />
     <Compile Include="Pages\FileUploadAjaxPage.cs" />

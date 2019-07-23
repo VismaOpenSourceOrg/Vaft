@@ -1,18 +1,16 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using Vaft.Framework.Core;
 
 namespace Vaft.PageObjects.Pages
 {
     public class FileUploadAjaxPage : PageBase
     {
-        [FindsBy(How = How.Name, Using = "file")]
-        protected IWebElement UploadFileElement { get; set; }
-
         public FileUploadAjaxPage(IWebDriver driver)
             : base(driver)
         {
         }
+
+        private IWebElement UploadFileElement => Driver.FindElement(By.Name("file"));
 
         public FileUploadAjaxPage NavigateToFileUploadAjaxPage()
         {

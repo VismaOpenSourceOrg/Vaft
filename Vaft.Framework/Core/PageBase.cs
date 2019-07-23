@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace Vaft.Framework.Core
 {
@@ -10,7 +9,6 @@ namespace Vaft.Framework.Core
         protected PageBase(IWebDriver driver)
             : base(driver)
         {
-            PageFactory.InitElements(driver, this);
         }
     }
 }
