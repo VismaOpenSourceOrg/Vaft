@@ -48,6 +48,7 @@ namespace Vaft.Framework.DriverFactory
             chromeOptions.AddArguments("--lang=" + Config.Settings.RuntimeSettings.BrowserLanguage);
             chromeOptions.AddArguments("--test-type");
             chromeOptions.AddArguments("--disable-popup-blocking");
+            chromeOptions.AddArgument("--ignore-certificate-errors");
 
             Proxy proxy = GetProxy();
             if (proxy != null)

@@ -26,6 +26,7 @@ namespace Vaft.Framework.DriverFactory
                     chromeOptions.AddArgument("--lang=" + Config.Settings.RuntimeSettings.BrowserLanguage);
                     chromeOptions.AddArgument("--start-maximized");
                     chromeOptions.AddArguments("--disable-popup-blocking");
+                    chromeOptions.AddArgument("--ignore-certificate-errors");
                     return CreateRemoteWebDriver(chromeOptions.ToCapabilities());
                 case BrowserType.Firefox:
                     var firefoxProfile = new FirefoxProfile();
