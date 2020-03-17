@@ -22,6 +22,7 @@ namespace Vaft.Framework.Element
         public ElementCheckUtils(IWebElement element, TimeSpan timeToWait)
             : this(element)
         {
+            _element = element;
             _isTimeToWaitDefined = true;
             _timeToWait = timeToWait;
         }

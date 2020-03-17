@@ -25,6 +25,8 @@ namespace Vaft.Framework.Element
         public ElementAssertUtils(IWebElement element, IWebDriver driver, TimeSpan timeToWait)
             : this(element, driver)
         {
+            _element = element;
+            _driver = driver;
             _isTimeToWaitDefined = true;
             _timeToWait = timeToWait;
         }
