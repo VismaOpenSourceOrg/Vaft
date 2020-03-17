@@ -12,6 +12,7 @@ namespace Vaft.UnitTests.Tests
     /// </summary>
     [TestFixture]
     [Parallelizable(ParallelScope.None)]
+    [Ignore("Tests are hanging in TeamCity")]
     public class WebDriverFactoryTests
     {
         [Test]
