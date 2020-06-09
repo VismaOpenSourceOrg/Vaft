@@ -19,6 +19,8 @@ namespace Vaft.Framework.Core
         protected static IVaftLogger VaftLog;
         protected VaftTestContext VaftContext;
 
+        public string ScreenshotFileName { get; set; }
+
         public TestBase()
         {
             Log = LogManager.GetLogger(GetType().FullName);
@@ -49,6 +51,7 @@ namespace Vaft.Framework.Core
         [SetUp]
         public void SetTestMethodName()
         {
+            ScreenshotFileName = null;
             VaftContext.MethodName = TestContext.CurrentContext.Test.MethodName;
         }
 
@@ -86,7 +89,7 @@ namespace Vaft.Framework.Core
         {
             if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
-                TakeScreenshot();
+                ScreenshotFileName = TakeScreenshot();
             }
         }
 
@@ -94,7 +97,6 @@ namespace Vaft.Framework.Core
         {
             return ScreenShot.SaveScreenShot(Driver, VaftContext.FullName);
         }
-
 
         /// <summary>
         /// Virtual method for performing cleanup before WebDriver closes.
