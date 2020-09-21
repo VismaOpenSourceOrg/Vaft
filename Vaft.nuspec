@@ -12,7 +12,7 @@
       <dependency id="NUnit" version="[3.7.0,)" />
       <dependency id="Selenium.Support" version="[3.141.0,)" />
       <dependency id="Selenium.WebDriver" version="[3.141.0,)" />
-	  <dependency id="Selenium.WebDriver.ChromeDriver" version="[85.0.4183.8700,)" />
+	  <dependency id="Selenium.Chrome.WebDriver" version="[85.0.0,)" />
 	  <dependency id="Selenium.WebDriver.IEDriver" version="[3.150.1,)" />
 	  <dependency id="Selenium.Firefox.WebDriver" version="[0.23.0,)" />
 	  <dependency id="NLog" version="[4.4.12,)" />
