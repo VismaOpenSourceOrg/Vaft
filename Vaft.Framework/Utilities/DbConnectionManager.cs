@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
-using System.Data.OracleClient;
 using System.Data.SqlClient;
+using Oracle.ManagedDataAccess.Client;
 using Vaft.Framework.Settings;
 
 namespace Vaft.Framework.Utilities
