@@ -54,6 +54,7 @@ namespace Vaft.Framework.Element
         }
 
         /// <summary>WebElement extension methods for waiting until WebElement matches given condition.</summary>
+        [Obsolete("Please use Driver.VaftExt.Wait() instead.")]
         public static ElementWaitUtils Wait(this IWebElement element)
         {
             return new ElementWaitUtils(element, ToDriver(element));
@@ -62,6 +63,7 @@ namespace Vaft.Framework.Element
         /// <summary>WebElement extension methods for waiting until WebElement matches given condition.</summary>
         /// <param name="element">WebElement</param>
         /// <param name="timeToWait">time to wait</param>
+        [Obsolete("Please use Driver.VaftExt.Wait(TimeSpan timeToWait) instead.")]
         public static ElementWaitUtils Wait(this IWebElement element, TimeSpan timeToWait)
         {
             return new ElementWaitUtils(element, ToDriver(element), timeToWait);

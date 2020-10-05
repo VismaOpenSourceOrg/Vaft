@@ -3,6 +3,7 @@ using System.Drawing;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using Vaft.Framework.Element;
 using Vaft.Framework.Settings;
 
 namespace Vaft.Framework.Utilities
@@ -135,14 +136,14 @@ namespace Vaft.Framework.Utilities
         /// <param name="text">Text message.</param>
         public void VerifyThatTextIsDisplayed(string text)
         {
-            Assert.True(WaitUntilTextIsDisplayed(text));
+            NUnit.Framework.Assert.True(WaitUntilTextIsDisplayed(text));
         }
 
         /// <summary>Checks for specified text to be not displayed in Web page.</summary>
         /// <param name="text">Text message.</param>
         public void VerifyThatTextIsNotDisplayed(string text)
         {
-            Assert.True(WaitUntilTextIsNotDisplayed(text));
+            NUnit.Framework.Assert.True(WaitUntilTextIsNotDisplayed(text));
         }
 
         /// <summary>Waits for specified text to be not displayed in Web page.</summary>
@@ -280,5 +281,21 @@ namespace Vaft.Framework.Utilities
                 throw;
             }
         }
+
+        public WebElementWaitUtils Wait()
+        {
+            return new WebElementWaitUtils(_driver);
+        }
+
+        public WebElementWaitUtils Wait(TimeSpan timeToWait)
+        {
+            return new WebElementWaitUtils(_driver, timeToWait);
+        }
+
+        public WebElementAssertUtils Assert()
+        {
+            return new WebElementAssertUtils(_driver);
+        }
+
     }
 }

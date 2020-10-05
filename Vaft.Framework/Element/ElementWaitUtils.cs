@@ -15,6 +15,7 @@ namespace Vaft.Framework.Element
         private readonly string _locator;
         private readonly TimeSpan _timeToWait;
 
+        [Obsolete("Please use ElementWaitUtils(IWebDriver driver) instead.")]
         public ElementWaitUtils(IWebElement element, IWebDriver driver)
         {
             _element = element;
@@ -23,6 +24,7 @@ namespace Vaft.Framework.Element
             _isTimeToWaitDefined = false;
         }
 
+        [Obsolete("Please use ElementWaitUtils(IWebDriver driver, TimeSpan timeToWait) instead.")]
         public ElementWaitUtils(IWebElement element, IWebDriver driver, TimeSpan timeToWait)
             : this(element, driver)
         {
