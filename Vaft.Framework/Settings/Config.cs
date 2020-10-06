@@ -1,33 +1,50 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Configuration;
+using System.IO;
 
 namespace Vaft.Framework.Settings
 {
     public static class Config
     {
-        public static ConfigurationSettings Settings { get; set; }
 
-        public static string GetSettingValue(string key)
+        public static IConfiguration Configuration;
+
+
+        static Config()
         {
-            return ConfigurationManager.AppSettings[key];
+
+            var configurationBuilder = new ConfigurationBuilder()
+                .AddJsonFile(Path.Combine("appsettings.json"))
+                .AddEnvironmentVariables();
+            Configuration = configurationBuilder.Build();
         }
 
-        public static string GetSettingValue(string key, string defaultValue)
+        public static ConfigurationSettings Settings { get; set; }
+
+        public static string GetSettingValue(string section, string key)
         {
-            var setting = GetSettingValue(key) ?? defaultValue;
+            string result = Configuration.GetSection(section).GetSection(key).Value;
+            return result;
+        }
+
+        public static string GetSettingValue(string section, string key, string defaultValue)
+        {
+
+            var setting = Configuration.GetSection(section).GetSection(key).Value ?? defaultValue;
             return setting;
         }
 
-        public static bool GetBooleanSettingValue(string key)
+        public static bool GetBooleanSettingValue(string section, string key)
         {
             bool settingValue;
-            Boolean.TryParse(GetSettingValue("BrowserStack"), out settingValue);
+            Boolean.TryParse(GetSettingValue(section, key), out settingValue);
             return settingValue;
         }
 
-        public static bool GetBooleanSettingValue(string key, bool defaultValue)
+        public static bool GetBooleanSettingValue(string section, string key, bool defaultValue)
         {
-            var setting = GetSettingValue(key);
+            var setting = GetSettingValue(section, key);
 
             if (setting == null)
             {

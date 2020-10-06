@@ -40,11 +40,11 @@ namespace Vaft.Framework.Settings
 
         public RuntimeSettings()
         {
-            AppBaseUrl = Config.GetSettingValue("ApplicationBaseUrl", null);
+            AppBaseUrl = Config.GetSettingValue("Runtime", "ApplicationBaseUrl", null);
             SeleniumBrowser = getBrowserTypeFromConfig();
-            BrowserVersion = Config.GetSettingValue("BrowserVersion", null);
-            BrowserLanguage = Config.GetSettingValue("BrowserLanguage", "en-US");
-            BrowserResolution = Config.GetSettingValue("BrowserResolution", "maximized");
+            BrowserVersion = Config.GetSettingValue("Runtime", "BrowserVersion", null);
+            BrowserLanguage = Config.GetSettingValue("Runtime", "BrowserLanguage", "en-US");
+            BrowserResolution = Config.GetSettingValue("Runtime", "BrowserResolution", "maximized");
 
             if (BrowserResolution.Contains("maximized"))
             {
@@ -57,24 +57,24 @@ namespace Vaft.Framework.Settings
                 WindowHeight = ParseWindowHeight();
             }
 
-            SeleniumGridUrl = Config.GetSettingValue("SeleniumGridUrl", "http://localhost:4444/wd/hub");
+            SeleniumGridUrl = Config.GetSettingValue("Runtime", "SeleniumGridUrl", "http://localhost:4444/wd/hub");
             TimeoutSeconds = GetSeleniumTimeout();
             PageLoadTimeout = GetPageLoadTimeout();
             ImplicitWaitTimeout = GetImplicitWaitTimeout();
             ExplicitWaitTimeout = GetExplicitWaitTimeout();
-            AjaxWaitSeconds = TimeSpan.FromSeconds(double.Parse(Config.GetSettingValue("AjaxWaitTimeout", "5")));
-            AnimationWaitSeconds = TimeSpan.FromSeconds(double.Parse(Config.GetSettingValue("AnimationWaitTimeout", "5")));
-            AngularWaitSeconds = TimeSpan.FromSeconds(double.Parse(Config.GetSettingValue("AngularWaitTimeout", "5")));
-            ChromeServerPath = Config.GetSettingValue("ChromeServerPath", null);
-            IeServerPath = Config.GetSettingValue("IeServerPath", null);
-            EdgeServerPath = Config.GetSettingValue("EdgeServerPath", null);
-            FirefoxDriverPath = Config.GetSettingValue("FirefoxDriverPath", null);
-            ScreenshotOnFailure = Config.GetBooleanSettingValue("ScreenshotOnFailure", false);
-            Proxy = Config.GetSettingValue("Proxy", "");
-            DatabaseType = Config.GetSettingValue("DatabaseType", "mssql");
+            AjaxWaitSeconds = TimeSpan.FromSeconds(double.Parse(Config.GetSettingValue("Runtime", "AjaxWaitTimeout", "5")));
+            AnimationWaitSeconds = TimeSpan.FromSeconds(double.Parse(Config.GetSettingValue("Runtime", "AnimationWaitTimeout", "5")));
+            AngularWaitSeconds = TimeSpan.FromSeconds(double.Parse(Config.GetSettingValue("Runtime", "AngularWaitTimeout", "5")));
+            ChromeServerPath = Config.GetSettingValue("Runtime", "ChromeServerPath", null);
+            IeServerPath = Config.GetSettingValue("Runtime", "IeServerPath", null);
+            EdgeServerPath = Config.GetSettingValue("Runtime", "EdgeServerPath", null);
+            FirefoxDriverPath = Config.GetSettingValue("Runtime", "FirefoxDriverPath", null);
+            ScreenshotOnFailure = Config.GetBooleanSettingValue("Runtime", "ScreenshotOnFailure", false);
+            Proxy = Config.GetSettingValue("Runtime", "Proxy", "");
+            DatabaseType = Config.GetSettingValue("Runtime", "DatabaseType", "mssql");
             DriverInitializationType = GetDriverInitializationType("DriverInitializationType");
-            RunOnRemoteMachine = Config.GetSettingValue("RunOnRemoteMachine", "false");
-            SeleniumDebugMode = Config.GetBooleanSettingValue("SeleniumDebugMode", false);
+            RunOnRemoteMachine = Config.GetSettingValue("Runtime", "RunOnRemoteMachine", "false");
+            SeleniumDebugMode = Config.GetBooleanSettingValue("Runtime", "SeleniumDebugMode", false);
 
             if (SeleniumDebugMode & RunOnRemoteMachine != "false")
             {
@@ -93,7 +93,7 @@ namespace Vaft.Framework.Settings
         /// <summary>Loads the driver initializer type from App.config</summary>
         private Type GetDriverInitializationType(string key)
         {
-            var typeName = Config.GetSettingValue(key);
+            var typeName = Config.GetSettingValue("Runtime", key);
 
             if (string.IsNullOrWhiteSpace(typeName))
             {
@@ -105,7 +105,7 @@ namespace Vaft.Framework.Settings
 
         private TimeSpan? GetSeleniumTimeout()
         {
-            var seleniumTimeout = Config.GetSettingValue("SeleniumTimeout", null);
+            var seleniumTimeout = Config.GetSettingValue("Runtime", "SeleniumTimeout", null);
 
             if (seleniumTimeout != null)
             {
@@ -122,7 +122,7 @@ namespace Vaft.Framework.Settings
                 return (TimeSpan)TimeoutSeconds;
             }
 
-            return TimeSpan.FromSeconds(double.Parse(Config.GetSettingValue("ImplicitWaitTimeout", "5")));
+            return TimeSpan.FromSeconds(double.Parse(Config.GetSettingValue("Runtime", "ImplicitWaitTimeout", "5")));
         }
 
         private TimeSpan GetExplicitWaitTimeout()
@@ -132,12 +132,12 @@ namespace Vaft.Framework.Settings
                 return (TimeSpan)TimeoutSeconds;
             }
 
-            return TimeSpan.FromSeconds(double.Parse(Config.GetSettingValue("ExplicitWaitTimeout", "5")));
+            return TimeSpan.FromSeconds(double.Parse(Config.GetSettingValue("Runtime", "ExplicitWaitTimeout", "5")));
         }
 
         private BrowserType getBrowserTypeFromConfig()
         {
-            var browser = Config.GetSettingValue("SeleniumBrowser", "firefox");
+            var browser = Config.GetSettingValue("Runtime", "SeleniumBrowser", "chrome");
 
             switch (browser)
             {
@@ -204,7 +204,7 @@ namespace Vaft.Framework.Settings
 
         private TimeSpan? GetPageLoadTimeout()
         {
-            var pageLoadTimeout = Config.GetSettingValue("PageLoadTimeout", null);
+            var pageLoadTimeout = Config.GetSettingValue("chrome", "PageLoadTimeout", null);
 
             if (pageLoadTimeout != null)
             {
