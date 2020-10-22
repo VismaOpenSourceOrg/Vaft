@@ -40,7 +40,7 @@ namespace Vaft.Framework.Settings
 
         public RuntimeSettings()
         {
-            AppBaseUrl = Config.GetSettingValue("Runtime", "ApplicationBaseUrl", null);
+            AppBaseUrl = Config.GetSettingValue("Runtime", "ApplicationBaseUrl");
             SeleniumBrowser = getBrowserTypeFromConfig();
             BrowserVersion = Config.GetSettingValue("Runtime", "BrowserVersion", null);
             BrowserLanguage = Config.GetSettingValue("Runtime", "BrowserLanguage", "en-US");
@@ -137,7 +137,7 @@ namespace Vaft.Framework.Settings
 
         private BrowserType getBrowserTypeFromConfig()
         {
-            var browser = Config.GetSettingValue("Runtime", "SeleniumBrowser", "chrome");
+            var browser = Config.GetSettingValue("Runtime", "SeleniumBrowser");
 
             switch (browser)
             {
