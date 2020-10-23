@@ -18,5 +18,10 @@ namespace GoogleTests
             Driver.VaftExt().OpenApplicationBaseUrl();
             return this;
         }
+
+        public string GetPageTitle()
+        {
+            return Driver.Title;
+        }
     }
 }

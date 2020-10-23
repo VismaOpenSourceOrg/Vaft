@@ -18,7 +18,7 @@ namespace GoogleTests
         public void Test1()
         {
             _page.NavigateToHomePage();
-            Assert.That(1 == 1);
+            Assert.That(_page.GetPageTitle(), Is.EqualTo("Google"));
         }
     }
 }
