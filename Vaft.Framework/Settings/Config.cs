@@ -1,50 +1,33 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Configuration;
-using System.IO;
 
 namespace Vaft.Framework.Settings
 {
     public static class Config
     {
-
-        public static IConfiguration Configuration;
-
-
-        static Config()
-        {
-
-            var configurationBuilder = new ConfigurationBuilder()
-                .AddJsonFile(Path.Combine("appsettings.json"))
-                .AddEnvironmentVariables();
-            Configuration = configurationBuilder.Build();
-        }
-
         public static ConfigurationSettings Settings { get; set; }
 
-        public static string GetSettingValue(string section, string key)
+        public static string GetSettingValue(string key)
         {
-            string result = Configuration.GetSection(section).GetSection(key).Value;
-            return result;
+            return ConfigurationManager.AppSettings[key];
         }
 
-        public static string GetSettingValue(string section, string key, string defaultValue)
+        public static string GetSettingValue(string key, string defaultValue)
         {
-
-            var setting = Configuration.GetSection(section).GetSection(key).Value ?? defaultValue;
+            var setting = GetSettingValue(key) ?? defaultValue;
             return setting;
         }
 
-        public static bool GetBooleanSettingValue(string section, string key)
+        public static bool GetBooleanSettingValue(string key)
         {
             bool settingValue;
-            Boolean.TryParse(GetSettingValue(section, key), out settingValue);
+            Boolean.TryParse(GetSettingValue("BrowserStack"), out settingValue);
             return settingValue;
         }
 
-        public static bool GetBooleanSettingValue(string section, string key, bool defaultValue)
+        public static bool GetBooleanSettingValue(string key, bool defaultValue)
         {
-            var setting = GetSettingValue(section, key);
+            var setting = GetSettingValue(key);
 
             if (setting == null)
             {
