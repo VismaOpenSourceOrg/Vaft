@@ -24,22 +24,22 @@
 
         public BrowserStackSettings()
         {
-            BsUser = Config.GetSettingValue("BrowserStack_User", null);
-            BsKey = Config.GetSettingValue("BrowserStack_Key", null);
-            BsTunnel = Config.GetBooleanSettingValue("BrowserStack_Tunnel", true);
-            BsProjectName = Config.GetSettingValue("BrowserStack_Project", null);
-            BsBuildVersion = Config.GetSettingValue("BrowserStack_Build", null);
-            BsOs = Config.GetSettingValue("BrowserStack_Os", null);
-            BsOsVersion = Config.GetSettingValue("BrowserStack_OsVersion", null);
-            BsBrowser = Config.GetSettingValue("BrowserStack_Browser", null);
-            BsBrowserVersion = Config.GetSettingValue("BrowserStack_BrowserVersion", null);
-            BsDebug = Config.GetSettingValue("BrowserStack_Debug", null);
-            BsAcceptSslCerts = Config.GetSettingValue("BrowserStack_AcceptSslCerts", null);
-            BsResolution = Config.GetSettingValue("BrowserStack_Resolution", null);
-            BsUrl = Config.GetSettingValue("BrowserStack_Url", "hub.browserstack.com");
-            BsBrowserName = Config.GetSettingValue("BrowserStack_BrowserName", null);
-            BsPlatform = Config.GetSettingValue("BrowseStack_Platform", "Desktop");
-            BsDevice = Config.GetSettingValue("BrowserStack_Device", null);
+            BsUser = Config.GetSettingValue("BrowserStack", "BrowserStack_User", null);
+            BsKey = Config.GetSettingValue("BrowserStack", "BrowserStack_Key", null);
+            BsTunnel = Config.GetBooleanSettingValue("BrowserStack", "BrowserStack_Tunnel", true);
+            BsProjectName = Config.GetSettingValue("BrowserStack", "BrowserStack_Project", null);
+            BsBuildVersion = Config.GetSettingValue("BrowserStack", "BrowserStack_Build", null);
+            BsOs = Config.GetSettingValue("BrowserStack", "BrowserStack_Os", null);
+            BsOsVersion = Config.GetSettingValue("BrowserStack", "BrowserStack_OsVersion", null);
+            BsBrowser = Config.GetSettingValue("BrowserStack", "BrowserStack_Browser", null);
+            BsBrowserVersion = Config.GetSettingValue("BrowserStack", "BrowserStack_BrowserVersion", null);
+            BsDebug = Config.GetSettingValue("BrowserStack", "BrowserStack_Debug", null);
+            BsAcceptSslCerts = Config.GetSettingValue("BrowserStack", "BrowserStack_AcceptSslCerts", null);
+            BsResolution = Config.GetSettingValue("BrowserStack", "BrowserStack_Resolution", null);
+            BsUrl = Config.GetSettingValue("BrowserStack", "BrowserStack_Url", "hub.browserstack.com");
+            BsBrowserName = Config.GetSettingValue("BrowserStack", "BrowserStack_BrowserName", null);
+            BsPlatform = Config.GetSettingValue("BrowserStack", "BrowseStack_Platform", "Desktop");
+            BsDevice = Config.GetSettingValue("BrowserStack", "BrowserStack_Device", null);
         }
     }
 }

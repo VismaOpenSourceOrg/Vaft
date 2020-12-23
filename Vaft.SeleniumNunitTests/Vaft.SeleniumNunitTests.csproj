@@ -114,6 +114,9 @@
     <None Include="App.IE11.config">
       <DependentUpon>App.config</DependentUpon>
     </None>
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
