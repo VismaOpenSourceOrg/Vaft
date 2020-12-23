@@ -17,7 +17,7 @@
 	  <dependency id="NUnit" version="[3.12.0,)" />
 	  <dependency id="Oracle.ManagedDataAccess" version="[19.9.0,)" />
 	  <dependency id="Oracle.ManagedDataAccess.Core" version="[2.19.90,)" />
-	  <dependency id="Selenium.Chrome.WebDriver" version="[85.0.0,)" />
+	  <dependency id="Selenium.WebDriver.ChromeDriver" version="[87.0.4280.8800,)" />
 	  <dependency id="Selenium.Firefox.WebDriver" version="[0.27.0,)" />
 	  <dependency id="Selenium.Support" version="[3.141.0,)" />
 	  <dependency id="Selenium.WebDriver" version="[3.141.0,)" />
