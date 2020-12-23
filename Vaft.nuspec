@@ -25,6 +25,7 @@
 	  <dependency id="SpecFlow" version="[3.4.14,)" />
 	  <dependency id="System.Data.SqlClient" version="[4.8.2,)" />
 	  <dependency id="System.Drawing.Common" version="[4.7.0,)" /> 
+	  <dependency id="System.Configuration.ConfigurationManager" version="[5.0.0,)" />
     </dependencies>
   </metadata>
   <files>
