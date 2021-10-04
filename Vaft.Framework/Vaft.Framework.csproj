@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="BrowserStackLocal" Version="1.4.0" />
+    <PackageReference Include="BrowserStackLocal" Version="2.0.0" />
     <PackageReference Include="fasterflect" Version="3.0.0" />
     <PackageReference Include="log4net" Version="2.0.11" />
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.22.0" />
