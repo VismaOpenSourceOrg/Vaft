@@ -105,18 +105,6 @@ namespace Vaft.Framework.Element
             return _element;
         }
 
-        /// <summary>Waits for specified element to be clickable.</summary>
-        public IWebElement WaitUntilClickable()
-        {
-            _driver.VaftExt().TurnOffImplicitlyWait();
-            new WebDriverWait(_driver, GetExplicitWait())
-            {
-                Message = "Element is not clickable. Locator: " + _locator
-            }.Until(ExpectedConditions.ElementToBeClickable(_element));
-            _driver.VaftExt().TurnOnImplicitlyWait();
-            return _element;
-        }
-
         private TimeSpan GetExplicitWait()
         {
             if (_isTimeToWaitDefined)

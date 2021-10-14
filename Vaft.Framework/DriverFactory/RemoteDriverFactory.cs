@@ -42,16 +42,8 @@ namespace Vaft.Framework.DriverFactory
                         EnableNativeEvents = false
                     };
 
-                    ieOptions.AddAdditionalCapability("disable-popup-blocking", true);
+                    ieOptions.AddAdditionalInternetExplorerOption("disable-popup-blocking", true);
 
-                    var browserVersion = Config.Settings.RuntimeSettings.BrowserVersion;
-                    if (browserVersion != null)
-                    {
-                        ieOptions.AddAdditionalCapability(CapabilityType.Version, int.Parse(browserVersion), true);
-
-
-                        return CreateRemoteWebDriver(ieOptions.ToCapabilities());
-                    }
                     return CreateRemoteWebDriver(ieOptions.ToCapabilities());
                 case BrowserType.Safari:
                     throw new NotImplementedException("Remote WebDriver Safari is not implemented");
@@ -64,7 +56,6 @@ namespace Vaft.Framework.DriverFactory
 
         private IWebDriver CreateRemoteWebDriver(ICapabilities capabilities)
         {
-            SetProxyIfNeeded(capabilities);
             var driver = new ScreenShotRemoteWebDriver(new Uri(Config.Settings.RuntimeSettings.SeleniumGridUrl), capabilities);
 
             SetBrowserSize(driver);
@@ -75,44 +66,6 @@ namespace Vaft.Framework.DriverFactory
             driver.FileDetector = detector;
             Driver = driver;
             return Driver;
-        }
-
-        private void SetProxyIfNeeded(ICapabilities capabilities)
-        {
-            var proxy = GetProxy();
-            if (proxy == null)
-            {
-                return;
-            }
-
-            var desiredCapabilities = capabilities as DesiredCapabilities;
-            if (desiredCapabilities != null)
-            {
-                desiredCapabilities.SetCapability(CapabilityType.Proxy, proxy);
-            }
-            else
-            {
-                var options = capabilities as ChromeOptions;
-                options.AddAdditionalCapability(CapabilityType.Proxy, proxy);
-            }
-        }
-
-        private Proxy GetProxy()
-        {
-            var proxyParameter = Config.Settings.RuntimeSettings.Proxy;
-            if (string.IsNullOrEmpty(proxyParameter))
-            {
-                return null;
-            }
-
-            var proxy = new Proxy
-            {
-                IsAutoDetect = false,
-                Kind = ProxyKind.Manual,
-                HttpProxy = proxyParameter,
-                SslProxy = proxyParameter
-            };
-            return proxy;
         }
 
         private void SetBrowserSize(IWebDriver driver)

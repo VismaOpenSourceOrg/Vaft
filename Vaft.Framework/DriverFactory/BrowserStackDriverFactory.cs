@@ -20,6 +20,8 @@ namespace Vaft.Framework.DriverFactory
         {
             var platform = Config.Settings.BrowserStackSettings.BsPlatform;
 
+            ValidateBrowserStackSettings();
+
             switch (platform)
             {
                 case "Desktop":
@@ -35,8 +37,6 @@ namespace Vaft.Framework.DriverFactory
 
         private static IWebDriver CreateDesktopWebDriver()
         {
-            DesiredCapabilities capabilities;
-
             var browser = Config.Settings.BrowserStackSettings.BsBrowser;
 
             switch (browser)
@@ -44,37 +44,31 @@ namespace Vaft.Framework.DriverFactory
                 case "Chrome":
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddArguments("--disable-popup-blocking");
-                    capabilities = chromeOptions.ToCapabilities() as DesiredCapabilities;
-                    SetCapabilities(capabilities, "Chrome");
-                    return CreateRemoteWebDriver(capabilities);
+                    var chromeDriverOptions = SetDriverOptions(chromeOptions, "Chrome");
+                    return CreateRemoteWebDriver(chromeDriverOptions.ToCapabilities());
                 case "Firefox":
-                    FirefoxOptions firefoxOptions = new FirefoxOptions();
-                    capabilities = firefoxOptions.ToCapabilities() as DesiredCapabilities;
-                    SetCapabilities(capabilities, "Firefox");
-                    return CreateRemoteWebDriver(capabilities);
+                    var firefoxOptions = new FirefoxOptions();
+                    var firefoxDriverOptions = SetDriverOptions(firefoxOptions, "Firefox");
+                    return CreateRemoteWebDriver(firefoxDriverOptions.ToCapabilities());
                 case "IE":
-                    InternetExplorerOptions ieOptions = new InternetExplorerOptions();                    
-                    capabilities = ieOptions.ToCapabilities() as DesiredCapabilities;
-                    capabilities.SetCapability("browserstack.ie.enablePopups", "true");
-                    SetCapabilities(capabilities, "IE");
-                    return CreateRemoteWebDriver(capabilities);
+                    InternetExplorerOptions ieOptions = new InternetExplorerOptions();
+                    ieOptions.AddAdditionalOption("browserstack.ie.enablePopups", "true");
+                    var internetExplorerDriverOptions = SetDriverOptions(ieOptions, "IE");
+                    return CreateRemoteWebDriver(internetExplorerDriverOptions.ToCapabilities());
                 case "Edge":
                     var edgeOptions = new EdgeOptions();
                     edgeOptions.PageLoadStrategy = PageLoadStrategy.Eager;
-                    capabilities = edgeOptions.ToCapabilities() as DesiredCapabilities;
-                    SetCapabilities(capabilities, "Edge");
-                    return CreateRemoteWebDriver(capabilities);
+                    var edgeDriverOptions = SetDriverOptions(edgeOptions, "Edge");
+                    return CreateRemoteWebDriver(edgeDriverOptions.ToCapabilities());
                 case "Safari":
                     SafariOptions safariOptions = new SafariOptions();
-                    capabilities = safariOptions.ToCapabilities() as DesiredCapabilities;
-                    capabilities.SetCapability("browserstack.safari.enablePopups", "true");
-                    SetCapabilities(capabilities, "Safari");
-                    return CreateRemoteWebDriver(capabilities);
+                    safariOptions.AddAdditionalOption("browserstack.safari.enablePopups", "true");
+                    var safariDriverOptions = SetDriverOptions(safariOptions, "Safari");
+                    return CreateRemoteWebDriver(safariDriverOptions.ToCapabilities());
                 case "Opera":
                     OperaOptions operaOptions = new OperaOptions();
-                    capabilities = operaOptions.ToCapabilities() as DesiredCapabilities;
-                    SetCapabilities(capabilities, "Opera");
-                    return CreateRemoteWebDriver(capabilities);
+                    var operaDriverOptions = SetDriverOptions(operaOptions, "Opera");
+                    return CreateRemoteWebDriver(operaDriverOptions.ToCapabilities());
                 default:
                     throw new ArgumentOutOfRangeException("'Browser' value: " + browser);
             }
@@ -82,32 +76,27 @@ namespace Vaft.Framework.DriverFactory
 
         private static IWebDriver CreateMobileWebDriver()
         {
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-
             var browser = Config.Settings.BrowserStackSettings.BsBrowserName;
 
             switch (browser)
             {
                 case "android":
-                    SetCapabilities(capabilities, "android");
-                    return CreateMobileRemoteWebDriver(capabilities);
+                    var androidDriverOptions = SetDriverOptions(new ChromeOptions(), "android");
+                    return CreateMobileRemoteWebDriver(androidDriverOptions.ToCapabilities());
                 case "iPad":
-                    SetCapabilities(capabilities, "iPad");
-                    return CreateMobileRemoteWebDriver(capabilities);
+                    var iPadDriverOptions = SetDriverOptions(new SafariOptions(), "iPad");
+                    return CreateMobileRemoteWebDriver(iPadDriverOptions.ToCapabilities());
                 case "iPhone":
-                    SetCapabilities(capabilities, "iPhone");
-                    return CreateMobileRemoteWebDriver(capabilities);
+                    var iPhoneDriverOptions = SetDriverOptions(new SafariOptions(), "iPhone");
+                    return CreateMobileRemoteWebDriver(iPhoneDriverOptions.ToCapabilities());
                 default:
                     throw new ArgumentOutOfRangeException("'Browser' value: " + browser);
             }
         }
 
-        private static void SetCapabilities(DesiredCapabilities caps, string browser)
+        private static DriverOptions SetDriverOptions(DriverOptions options, string browser)
         {
-            var user = Config.Settings.BrowserStackSettings.BsUser;
-            var key = Config.Settings.BrowserStackSettings.BsKey;
             var tunnel = Config.Settings.BrowserStackSettings.BsTunnel;
-            var project = Config.Settings.BrowserStackSettings.BsProjectName;
             var build = Config.Settings.BrowserStackSettings.BsBuildVersion;
             var os = Config.Settings.BrowserStackSettings.BsOs;
             var osVersion = Config.Settings.BrowserStackSettings.BsOsVersion;
@@ -120,81 +109,72 @@ namespace Vaft.Framework.DriverFactory
             var device = Config.Settings.BrowserStackSettings.BsDevice;
             var autoAcceptAlerts = Config.Settings.AppiumSettings.AutoAcceptAlerts;
 
-            if (user == null)
-            {
-                throw new ConfigurationErrorsException("BrowserStack_User parameter cannot be null in App.config");
-            }
 
-            if (key == null)
-            {
-                throw new ConfigurationErrorsException("BrowserStack_Key parameter cannot be null in App.config");
-            }
+            options.AddAdditionalOption("browserstack.user", Config.Settings.BrowserStackSettings.BsUser);
+            options.AddAdditionalOption("browserstack.key", Config.Settings.BrowserStackSettings.BsKey);
+            options.AddAdditionalOption("project", Config.Settings.BrowserStackSettings.BsProjectName);
 
-            if (project == null)
-            {
-                throw new ConfigurationErrorsException("BrowserStack_Project parameter cannot be null in App.config");
-            }
+            options.AddAdditionalOption("browser", "Chrome");
 
-            caps.SetCapability("browserstack.user", user);
-            caps.SetCapability("browserstack.key", key);
-            caps.SetCapability("project", project);
 
             if (browser != "android" || browser != "iPad" || browser != "iPhone") //Not applicable for mobile
             {
-                caps.SetCapability("browser", browser);
+                options.AddAdditionalOption("browser", browser);
             }
 
             if (tunnel)
             {
-                caps.SetCapability("browserstack.tunnel", "true");
+                options.AddAdditionalOption("browserstack.tunnel", "true");
             }
 
             if (build != null)
             {
-                caps.SetCapability("build", build);
+                options.AddAdditionalOption("build", build);
             }
 
             if (os != null)
             {
-                caps.SetCapability("os", os);
+                options.AddAdditionalOption("os", os);
             }
 
             if (osVersion != null)
             {
-                caps.SetCapability("os_version", osVersion);
+                options.AddAdditionalOption("os_version", osVersion);
             }
 
             if (browserVersion != null)
             {
-                caps.SetCapability("browser_version", browserVersion);
+                options.AddAdditionalOption("browser_version", browserVersion);
             }
 
             if (browserStackDebug != null)
             {
-                caps.SetCapability("browserstack.debug", browserStackDebug);
+                options.AddAdditionalOption("browserstack.debug", browserStackDebug);
             }
 
             if (acceptSslCerts != null)
             {
-                caps.SetCapability("acceptSslCerts", acceptSslCerts);
+                options.AddAdditionalOption("acceptSslCerts", acceptSslCerts);
             }
 
             if (resolution != null)
             {
-                caps.SetCapability("resolution", resolution);
+                options.AddAdditionalOption("resolution", resolution);
             }
 
             if (browser == "android" || browser == "iPad" || browser == "iPhone") //Only for mobile
             {
-                caps.SetCapability("browserName", browserName);
-                caps.SetCapability("platform", platform);
-                caps.SetCapability("device", device);
+                options.AddAdditionalOption("browser", browserName);
+                options.AddAdditionalOption("device", device);
+                options.AddAdditionalOption("realMobile", "true");
             }
 
             if (autoAcceptAlerts != null)
             {
-                caps.SetCapability("autoAcceptAlerts", autoAcceptAlerts);
+                options.AddAdditionalOption("autoAcceptAlerts", autoAcceptAlerts);
             }
+
+            return options;
         }
 
         private static IWebDriver CreateRemoteWebDriver(ICapabilities capabilities)
@@ -226,6 +206,24 @@ namespace Vaft.Framework.DriverFactory
             driver.FileDetector = detector;
 
             return driver;
+        }
+
+        private static void ValidateBrowserStackSettings()
+        {
+            if (Config.Settings.BrowserStackSettings.BsUser == null)
+            {
+                throw new ConfigurationErrorsException("BrowserStack_User parameter cannot be null in App.config");
+            }
+
+            if (Config.Settings.BrowserStackSettings.BsKey == null)
+            {
+                throw new ConfigurationErrorsException("BrowserStack_Key parameter cannot be null in App.config");
+            }
+
+            if (Config.Settings.BrowserStackSettings.BsProjectName == null)
+            {
+                throw new ConfigurationErrorsException("BrowserStack_Project parameter cannot be null in App.config");
+            }
         }
     }
 }

@@ -51,6 +51,7 @@ namespace Vaft.Framework.DriverFactory
             chromeOptions.AddArgument("--ignore-certificate-errors");
 
             Proxy proxy = GetProxy();
+
             if (proxy != null)
             {
                 chromeOptions.Proxy = proxy;
@@ -100,12 +101,13 @@ namespace Vaft.Framework.DriverFactory
             };
 
             Proxy proxy = GetProxy();
+
             if (proxy != null)
             {
                 options.Proxy = proxy;
             }
 
-            options.AddAdditionalCapability("disable-popup-blocking", true);
+            options.AddAdditionalOption("disable-popup-blocking", true);
 
             InitProfile(options);
 
@@ -134,8 +136,7 @@ namespace Vaft.Framework.DriverFactory
         {
             var edgeServerConfig = Config.Settings.RuntimeSettings.EdgeServerPath;
             var edgeDriverServerPath = AppDomain.CurrentDomain.BaseDirectory + edgeServerConfig;
-            var options = new EdgeOptions();
-            options.PageLoadStrategy = (PageLoadStrategy)EdgePageLoadStrategy.Eager;
+            var options = new EdgeOptions {PageLoadStrategy = PageLoadStrategy.Eager};
 
             Driver = new EdgeDriver(edgeDriverServerPath, options);
             SetBrowserSize(Driver);
@@ -177,10 +178,10 @@ namespace Vaft.Framework.DriverFactory
             }
 
             var initializer = Activator.CreateInstance(type) as IProfileInitializer;
-            initializer.InitializeProfile(profile);
+            initializer?.InitializeProfile(profile);
         }
 
-        private void SetBrowserSize(IWebDriver driver)
+        private static void SetBrowserSize(IWebDriver driver)
         {
             if (Config.Settings.RuntimeSettings.WindowMaximized)
             {
