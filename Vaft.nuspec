@@ -29,7 +29,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="Vaft.Framework\bin\Release\Vaft.Framework.dll" target="lib" />
-    <file src="Vaft.Framework\bin\Release\Vaft.Framework.pdb" target="lib" />
+    <file src="Vaft.Framework\bin\Release\netstandard2.0\Vaft.Framework.dll" target="lib" />
+    <file src="Vaft.Framework\bin\Release\netstandard2.0\Vaft.Framework.pdb" target="lib" />
   </files>
 </package>
